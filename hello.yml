@@ -1,0 +1,46 @@
+name: My Custom Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Repository
+        env:
+          REPO: ${{ github.repository }}
+        run: |
+          echo "Repository: $REPO"
+      
+      - name: Show Branch
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          echo "Branch: $BRANCH"
+      
+      - name: Show Actor
+        env:
+          ACTOR: ${{ github.actor }}
+        run: |
+          echo "Actor: $ACTOR"
+
+  second-job:
+    needs: first-job
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Success Message
+        run: |
+          echo "Der erste Job war erfolgreich! Wir sind auf dem main-Branch."
+
+  third-job:
+    needs: second-job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Final Output
+        run: |
+          echo "Auch der zweite Job wurde erfolgreich abgeschlossen!"
