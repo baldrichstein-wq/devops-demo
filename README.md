@@ -1,8 +1,3 @@
-# Meine Taschenrechner-App
-
-## Was macht das Projekt?
-Dies ist eine einfache Taschenrechner-Anwendung in Python, die grundlegende mathematische Operationen wie Summe und Differenz berechnet. Sie dient als Testfall für eine CI/CD-Pipeline mit GitHub Actions.
-
 ## Pipeline im Überblick
 Die Pipeline besteht aus zwei Jobs:
 1. **test**: Checkt den Code aus, installiert Abhängigkeiten mit Cache-Unterstützung, führt die automatisierten Tests mit `pytest` aus, paketiert die Anwendung in eine ZIP-Datei und lädt sie als Artifact hoch.
